@@ -31,23 +31,34 @@ Plugin 'https://github.com/easymotion/vim-easymotion.git'
 Plugin 'https://github.com/yuttie/comfortable-motion.vim.git'
 
 " Color schemes
-Plugin 'https://github.com/ErichDonGubler/vim-sublime-monokai.git'
+Plugin 'crusoexia/vim-monokai'
+Plugin 'ErichDonGubler/vim-sublime-monokai'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 
 " Bottom Status line
 Plugin 'itchyny/lightline.vim'
 
-" Most Recent Used files plugin
-"Plugin 'https://github.com/yegappan/mru.git'
-
-" Textual snippets (auto-complete)
-"Plugin 'https://github.com/garbas/vim-snipmate.git'
-
-" NERD Tree
-Plugin 'https://github.com/vim-scripts/The-NERD-tree.git'
+" NERD Tree and its git viewer
+Plugin 'preservim/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 " Tmux seamless navigation
 Plugin 'christoomey/vim-tmux-navigator'
+
+" YouCompleteMe a code-completion engine
+"Plugin 'ycm-core/YouCompleteMe'
+"Plugin 'rdnetto/YCM-Generator'
+
+" Fuzzy file finder and search
+Plugin 'junegunn/fzf'
+set rtp+=~/.fzf
+Plugin 'junegunn/fzf.vim'
+
+" Git integration
+Plugin 'tpope/vim-fugitive'
+
+" Clang-format for C and C++
+Plugin 'rhysd/vim-clang-format'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Do not add anything below this point

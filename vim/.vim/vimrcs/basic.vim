@@ -41,9 +41,10 @@ let mapleader = ","
 nmap <leader>w :w!<cr>
 nmap <leader>q :q!<cr>
 
-" :W sudo saves the file
-" (useful for handling the permission-denied error)
-"command W w !sudo tee % > /dev/null
+set number
+
+" Set shell
+set shell=sh
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -121,16 +122,8 @@ set foldcolumn=2
 syntax enable
 
 " Enable 256 colors palette in Gnome Terminal
-if $COLORTERM == 'gnome-terminal'
-    set t_Co=256
-endif
-
-try
-  colorscheme peaksea
-catch
-endtry
-
-set background=dark " Set extra options when running in GUI mode if has("gui_running") set guioptions-=T set guioptions-=e set t_Co=256 set guitablabel=%M\ %t endif
+set t_Co=256
+colorscheme monokai
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
@@ -145,6 +138,7 @@ set ffs=unix,dos,mac
 set nobackup
 set nowb
 set noswapfile
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
@@ -179,6 +173,7 @@ set wrap "Wrap lines
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -194,9 +189,6 @@ nnoremap tj :tabprev<CR>
 nnoremap th :tabfirst<CR>
 nnoremap tl :tablast<CR>
 
-" Switch CWD to the directory of the open buffer
-"map <leader>cd :cd %:p:h<cr>:pwd<cr>
-
 " Specify the behavior when switching between buffers 
 try
   set switchbuf=useopen,usetab,newtab
@@ -206,6 +198,7 @@ endtry
 
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
  
 """"""""""""""""""""""""""""""
 " => Status line
@@ -215,36 +208,6 @@ set laststatus=2
 
 " Format the status line
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Spell checking
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Pressing ,ss will toggle and untoggle spell checking
-"map <leader>ss :setlocal spell!<cr>
-
-" Shortcuts using <leader>
-"map <leader>sn ]s
-"map <leader>sp [s
-"map <leader>sa zg
-"map <leader>s? z=
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Misc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" Remove the Windows ^M - when the encodings gets messed up
-"noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
-"
-"" Quickly open a buffer for scribble
-"map <leader>q :e ~/buffer<cr>
-"
-"" Quickly open a markdown buffer for scribble
-"map <leader>x :e ~/buffer.md<cr>
-"
-"" Toggle paste mode on and off
-"map <leader>pp :setlocal paste!<cr>
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions

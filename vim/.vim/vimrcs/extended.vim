@@ -21,23 +21,6 @@ set guioptions-=R
 set guioptions-=l
 set guioptions-=L
 
-" Re-inforce choosen colorscheme and add some tweaks
-set background=dark
-colorscheme peaksea
-
-" Tweak vimdiff color-scheme
-highlight DiffAdd    cterm=none ctermfg=none ctermbg=101 gui=none guifg=fg guibg=Blue
-highlight DiffDelete cterm=none ctermfg=none ctermbg=101 gui=none guifg=fg guibg=Blue
-highlight DiffChange cterm=none ctermfg=none ctermbg=18  gui=none guifg=fg guibg=Blue
-highlight DiffText   cterm=none ctermfg=none ctermbg=88  gui=none guifg=bg guibg=White
-
-" Tweak vim color-scheme
-highlight Visual     cterm=bold ctermfg=none ctermbg=242 gui=none guifg=fg guibg=DarkGrey
-
-" Tweak fold column color
-highlight FoldColumn ctermbg=none ctermfg=none
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Turn persistent undo on 
 "    means that you can undo even when you close a buffer/VIM
@@ -80,12 +63,6 @@ imap ½ $
 " => General abbreviations
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Omni complete functions
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

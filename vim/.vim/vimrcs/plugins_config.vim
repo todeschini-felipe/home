@@ -13,8 +13,11 @@ let g:lightline = {
       \ 'colorscheme': 'powerline',
       \ 'active': {
       \   'left': [ ['mode', 'paste'],
-      \             ['fugitive', 'readonly', 'filename', 'modified'] ],
+      \             ['gitbranch', 'readonly', 'filename', 'modified'] ],
       \   'right': [ [ 'lineinfo' ], ['percent'] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead',
       \ },
       \ 'component': {
       \   'readonly': '%{&filetype=="help"?"":&readonly?"🔒":""}',
@@ -27,8 +30,13 @@ let g:lightline = {
       \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
       \ },
       \ 'separator': { 'left': ' ', 'right': ' ' },
-      \ 'subseparator': { 'left': ' ', 'right': ' ' }
+      \ 'subseparator': { 'left': '|', 'right': ' ' }
       \ }
+
+""""""""""""""""""""""""""""""
+" => CScope
+""""""""""""""""""""""""""""""
+" See ~/.vim/plugin/cscope_maps.vim
 
 """"""""""""""""""""""""""""""
 " => Seamless Navigation
@@ -39,75 +47,45 @@ let g:tmux_navigator_disable_when_zoomed = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Nerd Tree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:NERDTreeWinPos = "right"
-"let NERDTreeShowHidden=0
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
-"let g:NERDTreeWinSize=35
-map <leader>nn :NERDTreeToggle<cr>
-"map <leader>nb :NERDTreeFromBookmark<Space>
-"map <leader>nf :NERDTreeFind<cr>
+map <leader>nn :NERDTreeToggle %<cr> 
 
+""""""""""""""""""""""""""""""
+" => YouCompleteMe
+""""""""""""""""""""""""""""""
+" Enable Doc pop-up
+set updatetime=3000
+let g:ycm_auto_hover=''
+nmap <leader>D <plug>(YCMHover)
+hi Pmenu ctermfg=252 ctermbg=237 cterm=none
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim-multiple-cursors
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:multi_cursor_use_default_mapping=0
+" Hide window preview
+set completeopt-=preview
 
-"" Default mapping
-"let g:multi_cursor_start_word_key      = '<C-s>'
-"let g:multi_cursor_select_all_word_key = '<A-s>'
-"let g:multi_cursor_start_key           = 'g<C-s>'
-"let g:multi_cursor_select_all_key      = 'g<A-s>'
-"let g:multi_cursor_next_key            = '<C-s>'
-"let g:multi_cursor_prev_key            = '<C-p>'
-"let g:multi_cursor_skip_key            = '<C-x>'
-"let g:multi_cursor_quit_key            = '<Esc>'
+" Use local clangd
+let g:ycm_clangd_binary_path='clangd'
 
+" Navivate through errors with :ln and :lp
+let g:ycm_always_populate_location_list = 1
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => surround.vim config
-" Annotate strings with gettext 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"vmap Si S(i_<esc>f)
-"au FileType mako vmap Si S"i${ _(<esc>2f"a) }<esc>
+" Map symbol search shortchuts
+nmap <leader>yfw <Plug>(YCMFindSymbolInWorkspace)
+nmap <leader>yfd <Plug>(YCMFindSymbolInDocument)
 
+""""""""""""""""""""""""""""""
+" => Fuzzy Finder
+""""""""""""""""""""""""""""""
+nmap <C-P> :GFiles<CR>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vimroom
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:goyo_width=100
-"let g:goyo_margin_top = 2
-"let g:goyo_margin_bottom = 2
-"nnoremap <silent> <leader>z :Goyo<cr>
+""""""""""""""""""""""""""""""
+" => C++ Syntax Highlight
+""""""""""""""""""""""""""""""
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_posix_standard = 1
+let g:cpp_experimental_template_highlight = 1
 
+" Load .clang-format file, if it exists
+let g:clang_format#detect_style_file = 1
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vim-go
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:go_fmt_command = "goimports"
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Syntastic (syntax checker)
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:ale_linters = {
-"\   'javascript': ['jshint'],
-"\   'python': ['flake8'],
-"\   'go': ['go', 'golint', 'errcheck']
-"\}
-"
-"nmap <silent> <leader>a <Plug>(ale_next_wrap)
-"
-"" Disabling highlighting
-"let g:ale_set_highlights = 0
-"
-"" Only run linting when saving the file
-"let g:ale_lint_on_text_changed = 'never'
-"let g:ale_lint_on_enter = 0
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Git gutter (Git diff)
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:gitgutter_enabled=0
-"nnoremap <silent> <leader>d :GitGutterToggle<cr>
